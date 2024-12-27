@@ -1,0 +1,53 @@
+# fly.toml app configuration file generated for minecraft-flasche on 2024-12-27T11:20:33+01:00
+#
+# See https://fly.io/docs/reference/configuration/ for information about how to use this file.
+#
+
+app = 'minecraft-flasche'
+primary_region = 'cdg'
+kill_signal = 'SIGINT'
+kill_timeout = '5s'
+
+[build]
+  image = 'itzg/minecraft-server:latest'
+
+[env]
+  AUTOSTOP_TIMEOUT_EST = '60'
+  AUTOSTOP_TIMEOUT_INIT = '10'
+  DIFFICULTY = 'easy'
+  ENABLE_AUTOSTOP = 'TRUE'
+  ENABLE_WHITELIST = 'TRUE'
+  EULA = 'TRUE'
+  MAX_PLAYERS = '8'
+  MEMORY = '1G'
+  MODE = 'survival'
+  MOTD = 'Ihr seid alles Flaschen'
+  PRIMARY_REGION = 'cdg'
+  SERVER_NAME = 'flasche'
+  SIMULATION_DISTANCE = '10'
+  TYPE = 'VANILLA'
+  USE_AIKAR_FLAGS = 'TRUE'
+  VIEW_DISTANCE = '10'
+  WHITELIST_FILE = ''
+
+[[mounts]]
+  source = 'mc_server'
+  destination = '/data'
+  initial_size = '1gb'
+  snapshot_retention = 14
+
+[[services]]
+  protocol = 'udp'
+  internal_port = 25565
+  auto_stop_machines = 'stop'
+  auto_start_machines = true
+  min_machines_running = 0
+
+  [[services.ports]]
+    port = 25565
+
+[[vm]]
+  size = 'shared-cpu-2x'
+  memory = '2gb'
+  cpu_kind = 'shared'
+  cpus = 2
