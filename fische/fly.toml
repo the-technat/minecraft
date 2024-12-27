@@ -1,9 +1,9 @@
-# fly.toml app configuration file generated for minecraft-flasche on 2024-12-27T11:20:33+01:00
+# fly.toml app configuration file generated for minecraft-fische on 2024-12-27T12:18:38+01:00
 #
 # See https://fly.io/docs/reference/configuration/ for information about how to use this file.
 #
 
-app = 'minecraft-flasche'
+app = 'minecraft-fische'
 primary_region = 'cdg'
 kill_signal = 'SIGINT'
 kill_timeout = '5s'
@@ -12,25 +12,26 @@ kill_timeout = '5s'
   image = 'itzg/minecraft-server:latest'
 
 [env]
+  ALLOW_FLIGHT = 'TRUE'
   AUTOSTOP_TIMEOUT_EST = '60'
   AUTOSTOP_TIMEOUT_INIT = '60'
-  DIFFICULTY = 'easy'
+  DIFFICULTY = 'normal'
   ENABLE_AUTOSTOP = 'TRUE'
+  ENABLE_WHITELIST = 'TRUE'
   EULA = 'TRUE'
-  MAX_PLAYERS = '8'
+  MAX_PLAYERS = '2'
   MEMORY = '1G'
   MODE = 'survival'
-  MOTD = 'Ihr seid alles Flaschen'
+  MOTD = 'Fischers Fritz fischt frische Fische'
+  OVERRIDE_WHITELIST = 'true'
   PRIMARY_REGION = 'cdg'
-  SERVER_NAME = 'flasche'
+  SERVER_NAME = 'fische'
   SIMULATION_DISTANCE = '10'
+  SYNC_CHUNK_WRITES = 'FALSE'
   TYPE = 'VANILLA'
   USE_AIKAR_FLAGS = 'TRUE'
   VIEW_DISTANCE = '10'
-  ENABLE_WHITELIST = 'TRUE'
-  OVERRIDE_WHITELIST = 'true'
-  WHITELIST= "duundig,nbrac00,BEBEY00,DaveSkillerHD,schischkebab,Joscha_00,technat" 
-  SYNC_CHUNK_WRITES = "FALSE"
+  WHITELIST = 'technat,grosseklappe2'
 
 [[mounts]]
   source = 'mc_server'
@@ -41,13 +42,12 @@ kill_timeout = '5s'
 [[services]]
   protocol = 'tcp'
   internal_port = 25565
-  auto_stop_machines = "stop"
+  auto_stop_machines = 'stop'
   auto_start_machines = true
   min_machines_running = 0
 
   [[services.ports]]
     port = 25565
-
 
 [[vm]]
   size = 'shared-cpu-2x'
