@@ -1,0 +1,30 @@
+# fly.toml app configuration file generated for telegram-minecraft-manager on 2024-12-28T19:52:30+01:00
+#
+# See https://fly.io/docs/reference/configuration/ for information about how to use this file.
+#
+
+app = 'telegram-minecraft-manager'
+primary_region = 'cdg'
+
+[build]
+  dockerfile = 'Dockerfile'
+
+[deploy]
+  strategy = 'rolling'
+
+[env]
+  TMM_BOT_PORT = '8443'
+  TMM_S3_REGION = "auto"
+  TMM_S3_ENDPOINT = "https://fly.storage.tigris.dev"
+
+[http_service]
+  internal_port = 8443
+  force_https = true
+  auto_stop_machines = 'stop'
+  auto_start_machines = true
+  min_machines_running = 0
+
+[[vm]]
+  memory = '256mb'
+  cpu_kind = 'shared'
+  cpus = 1

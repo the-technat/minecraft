@@ -28,4 +28,4 @@ Then run `fly ssh console -a minecraft-flasche` to get a shell in your machine.
 
 Unzip the zip file in the diretory. Finally rename the folder to `world` and thus override the existing world.
 
-Now do a  `fly machine restart -a minecraft-flasche` and once the server has restared the world should be loaded.
+Now do a `fly machine restart -a minecraft-flasche` and once the server has restared the world should be loaded.
