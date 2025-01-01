@@ -14,3 +14,6 @@ Deployment's are done manually at the time, no Github Action.
 
 The [tmm](./tmm) folder contains a draft of a Telegram bot to manage these Minecraft servers. But it's by far not done.
 
+## Credits
+
+[@yamatt](https://github.com/yamatt) for his [fly-minecraft-server](https://github.com/yamatt/fly-minecraft-server) project which served as inspiration how to deploy the servers
