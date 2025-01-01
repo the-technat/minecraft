@@ -1,6 +1,6 @@
 # Manual Minecraft Setup
 
-Type: PLAY2-NANO with fixed IPv4 and 10GB system volume.
+Server: any VPS with fixed IPv4 and ~10GB system volume.
 
 Default Installation of Ubuntu Server 24.04 with cloud-init file:
 
@@ -47,7 +47,7 @@ Additional firewall rules:
 - `sudo ufw allow 25565`
 
 Minecraft Server setup:
-```
+```console
 sudo apt install openjdk-21-jre-headless
 sudo useradd -r -U -d /opt/minecraft -s /usr/sbin/nologin minecraft
 sudo mkdir -p /opt/minecraft
@@ -142,7 +142,7 @@ My whitelist.json:
 ```
 
 My ops.json:
-```
+```json
 [
   {
     "uuid": "7f67870f-57d6-406c-9ad1-e848715a9453",
@@ -174,11 +174,6 @@ WorkingDirectory=/opt/minecraft
 ExecStart=java -Xms2867M -Xmx2867M -XX:+AlwaysPreTouch -XX:+DisableExplicitGC -XX:+ParallelRefProcEnabled -XX:+PerfDisableSharedMem -XX:+UnlockExperimentalVMOptions -XX:+UseG1GC -XX:G1HeapRegionSize=8M -XX:G1HeapWastePercent=5 -XX:G1MaxNewSizePercent=40 -XX:G1MixedGCCountTarget=4 -XX:G1MixedGCLiveThresholdPercent=90 -XX:G1NewSizePercent=30 -XX:G1RSetUpdatingPauseTimePercent=5 -XX:G1ReservePercent=20 -XX:InitiatingHeapOccupancyPercent=15 -XX:MaxGCPauseMillis=200 -XX:MaxTenuringThreshold=1 -XX:SurvivorRatio=32 -Dusing.aikars.flags=https://mcflags.emc.gs -Daikars.new.flags=true -jar server.jar nogui 
 ExecStop=/usr/local/bin/mcrcon -H 127.0.0.1 -P 25575 -p password stop
 ExecReload=/usr/local/bin/mcrcon -H 127.0.0.1 -P 25575 -p password reload
-```
-
-BIND records:
-```
-fische		IN	A	51.15.59.129
 ```
 
 For easier maintenance a bashrc alias helps sending commands to the server:
