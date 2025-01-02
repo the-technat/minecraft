@@ -4,11 +4,12 @@ import (
 	"github.com/mymmrac/telego"
 	th "github.com/mymmrac/telego/telegohandler"
 	tu "github.com/mymmrac/telego/telegoutil"
+	flygo "github.com/superfly/fly-go"
 	"github.com/the-technat/telegram-minecraft-manager/pkg/config"
 )
 
 // RegisterHandlers tells the bot what do to in which case
-func RegisterHandlers(bh *th.BotHandler, C *config.Config) {
+func RegisterHandlers(bh *th.BotHandler, C *config.Config, flyClient *flygo.Client) {
 	// register middleware that will determine if a user is allowed to execute that command
 	bh.Use(
 		func(bot *telego.Bot, update telego.Update, next th.Handler) {
@@ -20,7 +21,10 @@ func RegisterHandlers(bh *th.BotHandler, C *config.Config) {
 		},
 	)
 
-	// bh.Handle(stopHandler, th.CommandEqual("/stop"))
+	// Register new handler with match on command `/listServers`
+	bh.HandleMessage(func(bot *telego.Bot, message telego.Message) {
+		listServerHandler(bot, message, flyClient)
+	}, th.CommandEqual("listServers"))
 
 	// Register new handler with match on command `/help`
 	bh.HandleMessage(func(bot *telego.Bot, message telego.Message) {

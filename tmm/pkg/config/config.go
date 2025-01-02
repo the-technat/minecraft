@@ -2,43 +2,31 @@ package config
 
 import (
 	"log"
-	"slices"
 
-	"github.com/spf13/viper"
+	"github.com/caarlos0/env/v11"
 )
 
 // Config represents the config of the bot
 type Config struct {
-	Debug        bool     `mapstructure:"DEBUG"`
-	Token        string   `mapstructure:"TOKEN"`
-	Admins       []string `mapstructure:"ADMINS"`
-	Port         int      `mapstructure:"PORT"`
-	WebhookURL   string   `mapstructure:"WEBHOOK_URL"`
-	WebhookToken string   `mapstructure:"WEBHOOK_TOKEN"`
+	Token        string   `env:"TELEGRAM_TOKEN"`
+	Admins       []string `env:"TELEGRAM_ADMINS"`
+	FlyOrgToken  string   `env:"FLY_ORG_TOKEN"`
+	WebhookURL   string   `env:"WEBHOOK_URL"`
+	Port         int      `env:"WEBHOOK_PORT" envDefault:"8443"`
+	Debug        bool     `env:"DEBUG" envDefault:"false"`
+	WebhookToken string   `env:"WEBHOOK_TOKEN" envDefault:"changeme"`
 }
 
 func LoadConfig() *Config {
-	viper.SetConfigName("")
-	viper.SetConfigType("env")
-	viper.AddConfigPath(".")
-	viper.AutomaticEnv()
-	viper.SetEnvPrefix("tmm")
-
 	c := Config{}
-	err := viper.Unmarshal(&c)
+	err := env.ParseWithOptions(&c, env.Options{
+		// https://github.com/caarlos0/env?tab=readme-ov-file#parse-options
+		Prefix:                "TMM_",
+		RequiredIfNoDef:       true,
+		UseFieldNameByDefault: true,
+	})
 	if err != nil {
 		log.Fatalf("Error reading config: %q", err)
 	}
-
 	return &c
-
-}
-
-// IsAdmin returns true if the given username is in the allowed admins list
-func (c *Config) IsAdmin(user string) bool {
-	if slices.Contains(c.Admins, user) {
-		return true
-	} else {
-		return false
-	}
 }

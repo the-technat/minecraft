@@ -12,6 +12,7 @@ import (
 	"github.com/mymmrac/telego"
 	th "github.com/mymmrac/telego/telegohandler"
 	tu "github.com/mymmrac/telego/telegoutil"
+	flygo "github.com/superfly/fly-go"
 
 	"github.com/the-technat/telegram-minecraft-manager/pkg/config"
 	"github.com/the-technat/telegram-minecraft-manager/pkg/handlers"
@@ -45,8 +46,18 @@ func main() {
 		log.Fatalf("Bot handler: %q", err)
 	}
 
+	// initalize flyClient
+	flyClient := flygo.NewClientFromOptions(flygo.ClientOptions{
+		AccessToken:      C.FlyOrgToken,
+		EnableDebugTrace: &C.Debug,
+		BaseURL:          "https://api.fly.io",
+	})
+	if !flyClient.Authenticated() {
+		log.Fatal("Fly API Token is invalid")
+	}
+
 	// register handlers to act on updates
-	handlers.RegisterHandlers(bh, C)
+	handlers.RegisterHandlers(bh, C, flyClient)
 
 	// Initialize signal handling
 	sigs := make(chan os.Signal, 1)
