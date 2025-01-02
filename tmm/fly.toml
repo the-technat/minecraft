@@ -13,9 +13,12 @@ primary_region = 'cdg'
   strategy = 'rolling'
 
 [env]
-  TMM_BOT_PORT = '8443'
-  TMM_S3_REGION = "auto"
-  TMM_S3_ENDPOINT = "https://fly.storage.tigris.dev"
+  TMM_WEBHOOK_URL = "https://telegram-minecraft-manager.fly.dev/"
+  TMM_TELEGRAM_ADMINS = "technat"
+  # set the following as secrets:
+  # TMM_TELEGRAM_TOKEN 
+  # TMM_FLY_ORG_TOKEN
+  # TMM_WEBHOOK_TOKEN
 
 [http_service]
   internal_port = 8443
