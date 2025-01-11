@@ -30,6 +30,7 @@ kill_timeout = '5s'
   ENABLE_WHITELIST = 'TRUE'
   OVERRIDE_WHITELIST = 'true'
   WHITELIST= "duundig,nbrac00,BEBEY00,DaveSkillerHD,schischkebab,Joscha_00,technat" 
+  OPS = 'technat'
   SYNC_CHUNK_WRITES = "FALSE"
 
 [[mounts]]

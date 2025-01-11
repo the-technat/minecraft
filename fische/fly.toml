@@ -32,6 +32,7 @@ kill_timeout = '5s'
   USE_AIKAR_FLAGS = 'TRUE'
   VIEW_DISTANCE = '10'
   WHITELIST = 'technat,grosseklappe2'
+  OPS = 'technat'
 
 [[mounts]]
   source = 'mc_server'
