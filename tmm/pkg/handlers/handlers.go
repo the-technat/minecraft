@@ -23,8 +23,13 @@ func RegisterHandlers(bh *th.BotHandler, C *config.Config, flyClient *flygo.Clie
 
 	// Register new handler with match on command `/listServers`
 	bh.HandleMessage(func(bot *telego.Bot, message telego.Message) {
-		listServerHandler(bot, message, flyClient)
+		listServerHandler(bot, message, flyClient, C)
 	}, th.CommandEqual("listServers"))
+
+	// Register new handler with match on command `/stop`
+	bh.HandleMessage(func(bot *telego.Bot, message telego.Message) {
+		stopHandler(bot, message, flyClient, C)
+	}, th.CommandEqual("stop"))
 
 	// Register new handler with match on command `/help`
 	bh.HandleMessage(func(bot *telego.Bot, message telego.Message) {

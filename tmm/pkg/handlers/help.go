@@ -18,5 +18,5 @@ func HelpHandler(bot *telego.Bot, message telego.Message) {
 		"Each command will tell you if you're using it wrong, so don't be shy to run one of the supported commands"))
 	_, _ = bot.SendMessage(tu.Message(
 		tu.ID(message.Chat.ID),
-		"I'm currently supporting these commands: /listServers, /stop and /start"))
+		"I'm currently supporting these commands: /listServers, /stop <server> and /start <server>"))
 }

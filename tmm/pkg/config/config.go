@@ -12,6 +12,7 @@ type Config struct {
 	Admins       []string `env:"TELEGRAM_ADMINS"`
 	FlyOrgToken  string   `env:"FLY_ORG_TOKEN"`
 	WebhookURL   string   `env:"WEBHOOK_URL"`
+	FlyAppPrefix string   `env:"FLY_APP_PREFIX" envDefault:"minecraft-"`
 	Port         int      `env:"WEBHOOK_PORT" envDefault:"8443"`
 	Debug        bool     `env:"DEBUG" envDefault:"false"`
 	WebhookToken string   `env:"WEBHOOK_TOKEN" envDefault:"changeme"`
