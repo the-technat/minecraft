@@ -19,7 +19,7 @@ kill_timeout = '5s'
   ENABLE_AUTOSTOP = 'TRUE'
   EULA = 'TRUE'
   MAX_PLAYERS = '8'
-  MEMORY = '1G'
+  MEMORY = '2300M'
   MODE = 'survival'
   MOTD = 'Ihr seid alles Flaschen'
   PRIMARY_REGION = 'cdg'
@@ -52,7 +52,7 @@ kill_timeout = '5s'
 
 
 [[vm]]
-  size = 'shared-cpu-2x'
-  memory = '2gb'
+  size = 'shared-cpu-4x'
+  memory = '3gb'
   cpu_kind = 'shared'
-  cpus = 2
+  cpus = 4

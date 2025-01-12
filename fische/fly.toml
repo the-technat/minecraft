@@ -21,7 +21,7 @@ kill_timeout = '5s'
   ENABLE_WHITELIST = 'TRUE'
   EULA = 'TRUE'
   MAX_PLAYERS = '2'
-  MEMORY = '1G'
+  MEMORY = '2300M'
   MODE = 'survival'
   MOTD = 'Fischers Fritz fischt frische Fische'
   OVERRIDE_WHITELIST = 'true'
@@ -52,7 +52,7 @@ kill_timeout = '5s'
     port = 25565
 
 [[vm]]
-  size = 'shared-cpu-2x'
-  memory = '2gb'
+  size = 'shared-cpu-4x'
+  memory = '3gb'
   cpu_kind = 'shared'
-  cpus = 2
+  cpus = 4
