@@ -41,6 +41,7 @@ services:
     environment:
       BACKUP_INTERVAL: "2h"
       RCON_HOST: fische
+      PAUSE_IF_NO_PLAYERS: "true"
     volumes:
       - ./fische_data:/data:ro
       - ./fische-backups:/backups
@@ -75,6 +76,7 @@ services:
     environment:
       BACKUP_INTERVAL: "2h"
       RCON_HOST: flasche
+      PAUSE_IF_NO_PLAYERS: "true"
     volumes:
       - ./flasche_data:/data:ro
       - ./flasche-backups:/backups
