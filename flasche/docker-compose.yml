@@ -1,0 +1,28 @@
+services:
+  mc:
+    image: itzg/minecraft-server
+    tty: true
+    stdin_open: true
+    ports:
+      - "25561:25565"
+    environment:
+      EULA: "TRUE"
+      ALLOW_FLIGHT: 'TRUE'
+      DIFFICULTY: 'easy'
+      ENABLE_WHITELIST: 'TRUE'
+      EULA: 'TRUE'
+      MAX_PLAYERS: '8'
+      MEMORY: '8G'
+      MODE: 'survival'
+      MOTD: 'Ihr seid alles Flaschen'
+      OVERRIDE_WHITELIST: 'true'
+      SERVER_NAME: 'flasche'
+      SIMULATION_DISTANCE: '10'
+      SYNC_CHUNK_WRITES: 'FALSE'
+      TYPE: 'VANILLA'
+      USE_AIKAR_FLAGS: 'TRUE'
+      VIEW_DISTANCE: '10'
+      WHITELIST: "duundig,nbrac00,BEBEY00,DaveSkillerHD,schischkebab,Joscha_00,technat" 
+      OPS: 'technat'
+    volumes:
+      - ./data:/data
