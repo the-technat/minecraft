@@ -1,0 +1,81 @@
+services:
+  router:
+    image: itzg/mc-router:latest
+    command: "-in-docker"
+    depends_on:
+      - fische
+      - flasche
+    ports:
+      - "25565:25565"
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+  fische:
+    image: itzg/minecraft-server
+    tty: true
+    stdin_open: true
+    labels:
+      mc-router.host: "fische.alleaffengaffen.ch"
+      mc-router.default: true
+    environment:
+      EULA: "TRUE"
+      ALLOW_FLIGHT: 'TRUE'
+      DIFFICULTY: 'normal'
+      ENABLE_WHITELIST: 'TRUE'
+      MAX_PLAYERS: '2'
+      MEMORY: '8G'
+      MODE: 'survival'
+      MOTD: 'Fischers Fritz fischt frische Fische'
+      OVERRIDE_WHITELIST: 'true'
+      SERVER_NAME: 'fische'
+      SIMULATION_DISTANCE: '10'
+      SYNC_CHUNK_WRITES: 'FALSE'
+      TYPE: 'VANILLA'
+      USE_AIKAR_FLAGS: 'TRUE'
+      VIEW_DISTANCE: '10'
+      WHITELIST: 'technat,grosseklappe2'
+      OPS: 'technat'
+    volumes:
+      - ./fische_data:/data
+  backups-fische:
+    image: itzg/mc-backup
+    environment:
+      BACKUP_INTERVAL: "2h"
+      RCON_HOST: fische
+    volumes:
+      - ./fische_data:/data:ro
+      - ./fische-backups:/backups
+  flasche:
+    image: itzg/minecraft-server
+    tty: true
+    stdin_open: true
+    labels:
+      mc-router.host: "flasche.alleaffengaffen.ch"
+    environment:
+      EULA: "TRUE"
+      ALLOW_FLIGHT: 'TRUE'
+      DIFFICULTY: 'easy'
+      ENABLE_WHITELIST: 'TRUE'
+      MAX_PLAYERS: '8'
+      MEMORY: '8G'
+      MODE: 'survival'
+      MOTD: 'Ihr seid alles Flaschen'
+      OVERRIDE_WHITELIST: 'true'
+      SERVER_NAME: 'flasche'
+      SIMULATION_DISTANCE: '10'
+      SYNC_CHUNK_WRITES: 'FALSE'
+      TYPE: 'VANILLA'
+      USE_AIKAR_FLAGS: 'TRUE'
+      VIEW_DISTANCE: '10'
+      WHITELIST: "duundig,nbrac00,BEBEY00,DaveSkillerHD,schischkebab,Joscha_00,technat" 
+      OPS: 'technat'
+    volumes:
+      - ./flasche_data:/data
+  backups-flasche:
+    image: itzg/mc-backup
+    environment:
+      BACKUP_INTERVAL: "2h"
+      RCON_HOST: flasche
+    volumes:
+      - ./flasche_data:/data:ro
+      - ./flasche-backups:/backups
+
