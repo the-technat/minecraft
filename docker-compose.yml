@@ -44,7 +44,7 @@ services:
     image: itzg/mc-backup
     restart: unless-stopped
     environment:
-      BACKUP_INTERVAL: "2h"
+      BACKUP_INTERVAL: "24h"
       RCON_HOST: fische
       PAUSE_IF_NO_PLAYERS: "true"
       BACKUP_METHOD: "restic"
@@ -86,7 +86,7 @@ services:
     image: itzg/mc-backup
     restart: unless-stopped
     environment:
-      BACKUP_INTERVAL: "2h"
+      BACKUP_INTERVAL: "24h"
       RCON_HOST: flasche
       PAUSE_IF_NO_PLAYERS: "true"
       BACKUP_METHOD: "restic"
