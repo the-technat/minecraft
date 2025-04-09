@@ -45,7 +45,9 @@ To finish the setup, create the `.env` file:
 
 ```console
 cat <<EOF | tee ./.env
-
-
+RESTIC_REPOSITORY=swift:minecraft-backups:/
+RESTIC_PASSWORD=<password for backups>
+RESTIC_ADDITIONAL_TAGS=banana
+## + all the vars from openstack.rc you got from the openstack dashboard
 EOF
 ```
