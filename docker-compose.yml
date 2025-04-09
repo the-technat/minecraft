@@ -2,6 +2,7 @@ services:
   router:
     image: itzg/mc-router:latest
     command: "-in-docker"
+    restart: unless-stopped
     depends_on:
       - fische
       - flasche
@@ -13,6 +14,7 @@ services:
     image: itzg/minecraft-server
     tty: true
     stdin_open: true
+    restart: unless-stopped
     labels:
       mc-router.host: "fische.alleaffengaffen.ch"
       mc-router.default: true
@@ -40,6 +42,7 @@ services:
       - ./fische_data:/data
   backups-fische:
     image: itzg/mc-backup
+    restart: unless-stopped
     environment:
       BACKUP_INTERVAL: "2h"
       RCON_HOST: fische
@@ -56,6 +59,7 @@ services:
     tty: true
     stdin_open: true
     container_name: flasche
+    restart: unless-stopped
     labels:
       mc-router.host: "flasche.alleaffengaffen.ch"
     environment:
@@ -80,6 +84,7 @@ services:
       - ./flasche_data:/data
   backups-flasche:
     image: itzg/mc-backup
+    restart: unless-stopped
     environment:
       BACKUP_INTERVAL: "2h"
       RCON_HOST: flasche
