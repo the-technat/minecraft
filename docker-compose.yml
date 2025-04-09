@@ -16,8 +16,10 @@ services:
     labels:
       mc-router.host: "fische.alleaffengaffen.ch"
       mc-router.default: true
+    container_name: fische
     environment:
       EULA: "TRUE"
+      VERSION: "1.21"
       ALLOW_FLIGHT: 'TRUE'
       DIFFICULTY: 'normal'
       ENABLE_WHITELIST: 'TRUE'
@@ -49,6 +51,7 @@ services:
     image: itzg/minecraft-server
     tty: true
     stdin_open: true
+    container_name: flasche
     labels:
       mc-router.host: "flasche.alleaffengaffen.ch"
     environment:
