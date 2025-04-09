@@ -39,15 +39,24 @@ _minecraft 300  IN SRV 10 100 23373 flasche.alleaffengaffen.ch. -> subzone _tcp.
 
 ## Backups
 
-There are preconfigured backup containers doing regular backups to S3.
+There are preconfigured backup containers doing regular backups to Openstack Swift (Infomaniak).
 
-To finish the setup, create the `.env` file:
+To finish the setup, create the `.env` file with the credentials obtained from the project:
 
 ```console
 cat <<EOF | tee ./.env
-RESTIC_REPOSITORY=swift:minecraft-backups:/
-RESTIC_PASSWORD=<password for backups>
+RESTIC_PASSWORD=<restic password>
 RESTIC_ADDITIONAL_TAGS=banana
-## + all the vars from openstack.rc you got from the openstack dashboard
+OS_AUTH_URL=https://api.pub1.infomaniak.cloud/identity/v3
+OS_PROJECT_ID="<openstack project id>"
+OS_PROJECT_NAME="<openstack project name>"
+OS_USER_DOMAIN_NAME="Default"
+OS_PROJECT_DOMAIN_ID="default"
+OS_USERNAME="<openstack username>"
+OS_PASSWORD="<password of openstack user>"
+OS_REGION_NAME="dc4-a"
+OS_INTERFACE=public
+OS_IDENTITY_API_VERSION=3
+OS_AUTH_VERSION=3
 EOF
 ```
