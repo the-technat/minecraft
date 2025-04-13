@@ -2,6 +2,7 @@ services:
   router:
     image: itzg/mc-router:latest
     command: "-in-docker"
+    container_name: mc_router
     restart: unless-stopped
     depends_on:
       - fische
@@ -53,7 +54,6 @@ services:
       - .env
     volumes:
       - ./fische_data:/data:ro
-      - ./fische-backups:/backups
   flasche:
     image: itzg/minecraft-server
     tty: true
@@ -95,5 +95,3 @@ services:
       - .env
     volumes:
       - ./flasche_data:/data:ro
-      - ./flasche-backups:/backups
-

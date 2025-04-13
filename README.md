@@ -1,47 +1,54 @@
 # Minecraft Servers
 
-A repo containing all things Minecraft.
+Minecraft Server hosting for my friends.
 
-I'm not a gamer, but as a system engineer I help my friends by setting up their servers so that they don't have to.
+> I'm not a gamer, but as a system engineer I help my friends by setting up their servers so that they don't have to.
+
+## Goal
+
+Setup as many minecraft servers as I want with as few effort as possible and as low cost as possible. If there's effort then in the begining, but there shouldn't be any maintenance effort.
+
+The server used for this must be cattle, in case it dies we just got downtime till a new server is setup.
 
 ## Setup
 
-0. Install docker on a server
-1. Clone the repo to a new server.
-2. Get data to the directories (e.g scp,unzip,move)
-3. `docker compose up -d`
-4. Expose the IP/Port of the router container somehow to the world (check docker labels for the domains to use)
+We need some sort of server, either an old PC sitting under your desk, a VPS or something else.
 
-### PlayIT
+On this box I ensure:
+- docker is installed
+- this repo is cloned at `~/minecraft`
+- the following directories are populated with the current world data:
+  - `~/minecraft/fische_data`
+  - `~/minecraft/flasche_data`
+  - see the "Restore" chapter how to get that data back to the server from the latest backup
+- start the stack using `docker compose up -d`
+- expose the container `mc_router`'s ``25565/udp` is exposed to the world, and the following domains are pointing to it:
+  - `flasche.alleaffengaffen.ch 300 IN A IP`
+  - `fische.alleaffengaffen.ch 300 IN A IP`
+  - `_minecraft._tcp.flasche.alleaffengaffen.ch IN SRV 10 100 PORT FQDN.`
+  _ `_minecraft._tcp.fische.alleaffengaffen.ch IN SRV 10 100 PORT FQDN.`
 
- nice little reverse-tunnel service to expose the servers (if the host is running behind a NAT).
+### playit.gg
 
-Register, login, install their agent:
+One way to expose `mc_router` to the internet without paying for a public IP.
 
-```console
-curl -SsL https://playit-cloud.github.io/ppa/key.gpg | gpg --dearmor | sudo tee /etc/apt/trusted.gpg.d/playit.gpg >/dev/null
-echo "deb [signed-by=/etc/apt/trusted.gpg.d/playit.gpg] https://playit-cloud.github.io/ppa/data ./" | sudo tee /etc/apt/sources.list.d/playit-cloud.list
-sudo apt update
-sudo apt install playit
-sudo systemctl enable --now playit
-playit setup # will prompt, then write config file for systemd service
-```
+Setup:
+- Register at `playit.gg/login/create`
+- Run the following commands on your server:
+  ```console
+  curl -SsL https://playit-cloud.github.io/ppa/key.gpg | gpg --dearmor | sudo tee /etc/apt/trusted.gpg.d/playit.gpg >/dev/null
+  echo "deb [signed-by=/etc/apt/trusted.gpg.d/playit.gpg] https://playit-cloud.github.io/ppa/data ./" | sudo tee /etc/apt/sources.list.d/playit-cloud.list
+  sudo apt update
+  sudo apt install playit
+  sudo systemctl enable --now playit
+  ```
+- Configure the agent by running `playit setup` (this will prompt you to enter a code in your browser and will then configure the playit agent) 
+- Create a tunnel in their UI using "Global Anycast" and type "Minecraft Java (game)".
+- Use the IP and Port they give you to configure DNS
 
-Lastly create a tunnel in ther UI.
+### Backups
 
-### DNS
-
-The following two records are used for a server:
-```
-@ 300  IN A  147.185.221.27 -> subzone flasche.alleaffengaffen.ch 
-_minecraft 300  IN SRV 10 100 23373 flasche.alleaffengaffen.ch. -> subzone _tcp.flasche.alleaffengaffen.ch
-```
-
-## Backups
-
-There are preconfigured backup containers doing regular backups to Openstack Swift (Infomaniak).
-
-To finish the setup, create the `.env` file with the credentials obtained from the project:
+There are preconfigured backup containers doing regular backups to Openstack Swift (Infomaniak). To finish their setup, create a `.env` file with the credentials needed:
 
 ```console
 cat <<EOF | tee ./.env
