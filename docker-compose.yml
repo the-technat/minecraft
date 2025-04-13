@@ -41,6 +41,7 @@ services:
       OPS: 'technat,duffy_26'
       EXISTING_OPS_FILE: 'SYNCHRONIZE'
       ENABLE_COMMAND_BLOCK: 'TRUE'
+      USES_PLUGINS: 'TRUE'
     volumes:
       - ./fische_data:/data
       - ./fische_plugins:/plugins
