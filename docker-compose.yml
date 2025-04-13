@@ -43,12 +43,11 @@ services:
       ENABLE_COMMAND_BLOCK: 'TRUE'
       MODRINTH_PROJECTS: |
         fabric-api
-        fpsdisplay
-        glitchcore
-        heaven-dimension-fabric
-        small-ships
-        terrablender
-        vanilla-perfected
+        fpsdisplay:beta
+        glitchcore:beta
+        heaven-dimension-fabric:beta
+        small-ships:beta
+        terrablender:beta
     volumes:
       - ./fische_data:/data
   backups-fische:
