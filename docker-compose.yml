@@ -43,6 +43,7 @@ services:
       ENABLE_COMMAND_BLOCK: 'TRUE'
     volumes:
       - ./fische_data:/data
+      - ./fische_plugins:/plugins
   backups-fische:
     image: itzg/mc-backup
     restart: unless-stopped
