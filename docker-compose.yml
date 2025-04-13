@@ -37,8 +37,8 @@ services:
       TYPE: 'VANILLA'
       USE_AIKAR_FLAGS: 'TRUE'
       VIEW_DISTANCE: '10'
-      WHITELIST: 'technat,grosseklappe2'
-      OPS: 'technat'
+      WHITELIST: 'technat,grosseklappe2,duffy_26'
+      OPS: 'technat,duffy_26'
     volumes:
       - ./fische_data:/data
   backups-fische:
@@ -78,8 +78,8 @@ services:
       TYPE: 'VANILLA'
       USE_AIKAR_FLAGS: 'TRUE'
       VIEW_DISTANCE: '10'
-      WHITELIST: "duundig,nbrac00,BEBEY00,DaveSkillerHD,schischkebab,Joscha_00,technat" 
-      OPS: 'technat'
+      WHITELIST: "duundig,nbrac00,BEBEY00,DaveSkillerHD,schischkebab,Joscha_00,technat,duffy_26" 
+      OPS: 'technat,duffy_26'
     volumes:
       - ./flasche_data:/data
   backups-flasche:

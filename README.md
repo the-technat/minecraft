@@ -70,7 +70,7 @@ EOF
 
 ### Restore
 
-Use the following oneshot container to restore:
+Use the following oneshot container to restore the latest world data on a fresh/existing server:
 ```console
 docker run --rm -ti -v ./restore_location:/restore --env-file .env -e RESTIC_REPOSITORY="swift:minecraft-backups:/server_name" restic/restic restore latest --target /restore
 ```
