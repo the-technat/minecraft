@@ -39,6 +39,7 @@ services:
       VIEW_DISTANCE: '10'
       WHITELIST: 'technat,grosseklappe2,duffy_26'
       OPS: 'technat,duffy_26'
+      ENABLE_COMMAND_BLOCK: 'TRUE'
     volumes:
       - ./fische_data:/data
   backups-fische:
