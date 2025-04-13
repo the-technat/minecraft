@@ -34,17 +34,23 @@ services:
       SERVER_NAME: 'fische'
       SIMULATION_DISTANCE: '10'
       SYNC_CHUNK_WRITES: 'FALSE'
-      TYPE: 'VANILLA'
+      TYPE: 'FABRIC'
       USE_AIKAR_FLAGS: 'TRUE'
       VIEW_DISTANCE: '10'
       WHITELIST: 'technat,grosseklappe2,duffy_26'
       OPS: 'technat,duffy_26'
       EXISTING_OPS_FILE: 'SYNCHRONIZE'
       ENABLE_COMMAND_BLOCK: 'TRUE'
-      USES_PLUGINS: 'TRUE'
+      MODRINTH_PROJECTS: |
+        fabric-api
+        fpsdisplay
+        glitchcore
+        heaven-dimension-fabric
+        small-ships
+        terrablender
+        vanilla-perfected
     volumes:
       - ./fische_data:/data
-      - ./fische_plugins:/plugins
   backups-fische:
     image: itzg/mc-backup
     restart: unless-stopped
