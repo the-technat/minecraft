@@ -39,9 +39,8 @@ services:
       VIEW_DISTANCE: '10'
       WHITELIST: 'technat,grosseklappe2,duffy_26'
       OPS: 'technat,duffy_26'
+      EXISTING_OPS_FILE: 'SYNCHRONIZE'
       ENABLE_COMMAND_BLOCK: 'TRUE'
-      MODPACK_PLATFORM: 'MODRINTH'
-      MODRINTH_MODPACK: '1ocGzRHv' # https://modrinth.com/modpack/vanilla-perfected
     volumes:
       - ./fische_data:/data
   backups-fische:
@@ -83,6 +82,7 @@ services:
       VIEW_DISTANCE: '10'
       WHITELIST: "duundig,nbrac00,BEBEY00,DaveSkillerHD,schischkebab,Joscha_00,technat,duffy_26" 
       OPS: 'technat,duffy_26'
+      EXISTING_OPS_FILE: 'SYNCHRONIZE'
     volumes:
       - ./flasche_data:/data
   backups-flasche:
