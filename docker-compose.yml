@@ -40,6 +40,8 @@ services:
       WHITELIST: 'technat,grosseklappe2,duffy_26'
       OPS: 'technat,duffy_26'
       ENABLE_COMMAND_BLOCK: 'TRUE'
+      MODPACK_PLATFORM: 'MODRINTH'
+      MODRINTH_MODPACK: '1ocGzRHv' # https://modrinth.com/modpack/vanilla-perfected
     volumes:
       - ./fische_data:/data
   backups-fische:
