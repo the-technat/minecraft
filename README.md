@@ -68,6 +68,17 @@ OS_AUTH_VERSION=3
 EOF
 ```
 
+Also set the `RCON_PASSWORD` variable to something static:
+
+```console
+cat <<EOF | tee .fische-env 
+RCON_PASSWORD=""
+EOF
+cat <<EOF | tee .flasche-env 
+RCON_PASSWORD=""
+EOF
+``` 
+
 ### Restore
 
 Use the following oneshot container to restore the latest world data on a fresh/existing server:
