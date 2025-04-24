@@ -22,7 +22,7 @@ On this box I ensure:
   - `~/minecraft/flasche_data`
   - see the "Restore" chapter how to get that data back to the server from the latest backup
 - start the stack using `docker compose up -d`
-- expose the container `mc_router`'s ``25565/udp` is exposed to the world, and the following domains are pointing to it:
+- expose the container `mc_router`'s `25565/udp` is exposed to the world, and the following domains are pointing to it:
   - `flasche.alleaffengaffen.ch 300 IN A IP`
   - `fische.alleaffengaffen.ch 300 IN A IP`
   - `_minecraft._tcp.flasche.alleaffengaffen.ch IN SRV 10 100 PORT FQDN.`
