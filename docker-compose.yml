@@ -22,7 +22,7 @@ services:
     container_name: fische
     environment:
       EULA: "TRUE"
-      VERSION: "1.21.8"
+      VERSION: "1.21"
       ALLOW_FLIGHT: 'TRUE'
       DIFFICULTY: 'normal'
       ENABLE_WHITELIST: 'TRUE'
@@ -34,20 +34,12 @@ services:
       SERVER_NAME: 'fische'
       SIMULATION_DISTANCE: '10'
       SYNC_CHUNK_WRITES: 'FALSE'
-      TYPE: 'FABRIC'
       USE_AIKAR_FLAGS: 'TRUE'
       VIEW_DISTANCE: '10'
       WHITELIST: 'technat,grosseklappe2,duffy_26'
       OPS: 'technat,duffy_26'
       EXISTING_OPS_FILE: 'SYNCHRONIZE'
       ENABLE_COMMAND_BLOCK: 'TRUE'
-      MODRINTH_PROJECTS: |
-        fabric-api
-        fpsdisplay:beta
-        glitchcore:beta
-        heaven-dimension-fabric:beta
-        small-ships:beta
-        terrablender:beta
     env_file:
     - .fische-env
     volumes:
