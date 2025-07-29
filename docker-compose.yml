@@ -22,7 +22,7 @@ services:
     container_name: fische
     environment:
       EULA: "TRUE"
-      VERSION: "1.21"
+      VERSION: "1.21.8"
       ALLOW_FLIGHT: 'TRUE'
       DIFFICULTY: 'normal'
       ENABLE_WHITELIST: 'TRUE'
