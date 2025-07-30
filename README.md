@@ -85,3 +85,5 @@ Use the following oneshot container to restore the latest world data on a fresh/
 ```console
 docker run --rm -ti -v ./restore_location:/restore --env-file .env -e RESTIC_REPOSITORY="swift:minecraft-backups:/server_name" restic/restic restore latest --target /restore
 ```
+
+Please note: you might have to check the .env file and see if all env vars are in the correct form for restic to read. Sometimes you need to set them all explicitly with `-e` for restic inside the container to find them.
