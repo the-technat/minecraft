@@ -48,23 +48,15 @@ Setup:
 
 ### Backups
 
-There are preconfigured backup containers doing regular backups to Openstack Swift (Infomaniak). To finish their setup, create a `.env` file with the credentials needed:
+There are preconfigured backup containers doing regular backups to S3. To finish their setup, create a `.env` file with the credentials needed:
 
 ```console
 cat <<EOF | tee ./.env
-RESTIC_PASSWORD=<restic password>
 RESTIC_ADDITIONAL_TAGS=banana
-OS_AUTH_URL=https://api.pub1.infomaniak.cloud/identity/v3
-OS_PROJECT_ID="<openstack project id>"
-OS_PROJECT_NAME="<openstack project name>"
-OS_USER_DOMAIN_NAME="Default"
-OS_PROJECT_DOMAIN_ID="default"
-OS_USERNAME="<openstack username>"
-OS_PASSWORD="<password of openstack user>"
-OS_REGION_NAME="dc4-a"
-OS_INTERFACE=public
-OS_IDENTITY_API_VERSION=3
-OS_AUTH_VERSION=3
+RESTIC_REPOSITORY=s3:https://<cloudflare_account_id>.r2.cloudflarestorage.com/<r2_bucket_name>
+RESTIC_PASSWORD=<restic password>
+AWS_ACCESS_KEY_ID=<your token access key id>
+AWS_SECRET_ACCESS_KEY=<your token access key secret>
 EOF
 ```
 
@@ -83,7 +75,7 @@ EOF
 
 Use the following oneshot container to restore the latest world data on a fresh/existing server:
 ```console
-docker run --rm -ti -v ./restore_location:/restore --env-file .env -e RESTIC_REPOSITORY="swift:minecraft-backups:/server_name" restic/restic restore latest --target /restore
+docker run --rm -ti -v ./restore_location:/restore --env-file .env -e RESTIC_REPOSITORY="s3:https://<cloudflare_account_id>.r2.cloudflarestorage.com/<r2_bucket_name>" restic/restic restore latest --target /restore
 ```
 
 Please note: you might have to check the .env file and see if all env vars are in the correct form for restic to read. Sometimes you need to set them all explicitly with `-e` for restic inside the container to find them.

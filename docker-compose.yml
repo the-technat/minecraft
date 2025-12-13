@@ -23,25 +23,25 @@ services:
     environment:
       EULA: "TRUE"
       VERSION: "1.21"
-      ALLOW_FLIGHT: 'TRUE'
-      DIFFICULTY: 'normal'
-      ENABLE_WHITELIST: 'TRUE'
-      MAX_PLAYERS: '2'
-      MEMORY: '8G'
-      MODE: 'survival'
-      MOTD: 'Fischers Fritz fischt frische Fische'
-      OVERRIDE_WHITELIST: 'true'
-      SERVER_NAME: 'fische'
-      SIMULATION_DISTANCE: '10'
-      SYNC_CHUNK_WRITES: 'FALSE'
-      USE_AIKAR_FLAGS: 'TRUE'
-      VIEW_DISTANCE: '10'
-      WHITELIST: 'technat,grosseklappe2,duffy_26'
-      OPS: 'technat,duffy_26'
-      EXISTING_OPS_FILE: 'SYNCHRONIZE'
-      ENABLE_COMMAND_BLOCK: 'TRUE'
+      ALLOW_FLIGHT: "TRUE"
+      DIFFICULTY: "normal"
+      ENABLE_WHITELIST: "TRUE"
+      MAX_PLAYERS: "2"
+      MEMORY: "8G"
+      MODE: "survival"
+      MOTD: "Fischers Fritz fischt frische Fische"
+      OVERRIDE_WHITELIST: "true"
+      SERVER_NAME: "fische"
+      SIMULATION_DISTANCE: "10"
+      SYNC_CHUNK_WRITES: "FALSE"
+      USE_AIKAR_FLAGS: "TRUE"
+      VIEW_DISTANCE: "10"
+      WHITELIST: "technat,grosseklappe2,duffy_26"
+      OPS: "technat,duffy_26"
+      EXISTING_OPS_FILE: "SYNCHRONIZE"
+      ENABLE_COMMAND_BLOCK: "TRUE"
     env_file:
-    - .fische-env
+      - .fische-env
     volumes:
       - ./fische_data:/data
   backups-fische:
@@ -52,7 +52,6 @@ services:
       RCON_HOST: fische
       PAUSE_IF_NO_PLAYERS: "true"
       BACKUP_METHOD: "restic"
-      RESTIC_REPOSITORY: "swift:minecraft-backups:/fische"
     env_file:
       - .env
       - .fische-env
@@ -68,26 +67,26 @@ services:
       mc-router.host: "flasche.alleaffengaffen.ch"
     environment:
       EULA: "TRUE"
-      ALLOW_FLIGHT: 'TRUE'
+      ALLOW_FLIGHT: "TRUE"
       VERSION: "1.21"
-      DIFFICULTY: 'easy'
-      ENABLE_WHITELIST: 'TRUE'
-      MAX_PLAYERS: '8'
-      MEMORY: '8G'
-      MODE: 'survival'
-      MOTD: 'Ihr seid alles Flaschen'
-      OVERRIDE_WHITELIST: 'true'
-      SERVER_NAME: 'flasche'
-      SIMULATION_DISTANCE: '10'
-      SYNC_CHUNK_WRITES: 'FALSE'
-      TYPE: 'VANILLA'
-      USE_AIKAR_FLAGS: 'TRUE'
-      VIEW_DISTANCE: '10'
-      WHITELIST: "duundig,nbrac00,BEBEY00,DaveSkillerHD,schischkebab,Joscha_00,technat,duffy_26" 
-      OPS: 'technat,duffy_26'
-      EXISTING_OPS_FILE: 'SYNCHRONIZE'
+      DIFFICULTY: "easy"
+      ENABLE_WHITELIST: "TRUE"
+      MAX_PLAYERS: "8"
+      MEMORY: "8G"
+      MODE: "survival"
+      MOTD: "Ihr seid alles Flaschen"
+      OVERRIDE_WHITELIST: "true"
+      SERVER_NAME: "flasche"
+      SIMULATION_DISTANCE: "10"
+      SYNC_CHUNK_WRITES: "FALSE"
+      TYPE: "VANILLA"
+      USE_AIKAR_FLAGS: "TRUE"
+      VIEW_DISTANCE: "10"
+      WHITELIST: "duundig,nbrac00,BEBEY00,DaveSkillerHD,schischkebab,Joscha_00,technat,duffy_26"
+      OPS: "technat,duffy_26"
+      EXISTING_OPS_FILE: "SYNCHRONIZE"
     env_file:
-    - .flasche-env
+      - .flasche-env
     volumes:
       - ./flasche_data:/data
   backups-flasche:
@@ -98,7 +97,6 @@ services:
       RCON_HOST: flasche
       PAUSE_IF_NO_PLAYERS: "true"
       BACKUP_METHOD: "restic"
-      RESTIC_REPOSITORY: "swift:minecraft-backups:/flasche"
     env_file:
       - .env
       - .flasche-env
