@@ -53,21 +53,22 @@ There are preconfigured backup containers doing regular backups to S3. To finish
 ```console
 cat <<EOF | tee ./.env
 RESTIC_ADDITIONAL_TAGS=banana
-RESTIC_REPOSITORY=s3:https://<cloudflare_account_id>.r2.cloudflarestorage.com/<r2_bucket_name>
 RESTIC_PASSWORD=<restic password>
 AWS_ACCESS_KEY_ID=<your token access key id>
 AWS_SECRET_ACCESS_KEY=<your token access key secret>
 EOF
 ```
 
-Also set the `RCON_PASSWORD` variable to something static:
+Also set the `RCON_PASSWORD` variable and `RESTIC_REPOSITORY` to something different per server:
 
 ```console
 cat <<EOF | tee .fische-env 
 RCON_PASSWORD=""
+RESTIC_REPOSITORY=s3:https://<cloudflare_account_id>.r2.cloudflarestorage.com/<r2_bucket_name>/fische
 EOF
 cat <<EOF | tee .flasche-env 
 RCON_PASSWORD=""
+RESTIC_REPOSITORY=s3:https://<cloudflare_account_id>.r2.cloudflarestorage.com/<r2_bucket_name>/flasche
 EOF
 ``` 
 
