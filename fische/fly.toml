@@ -70,6 +70,6 @@ min_machines_running = 0   # scale to zero
 [[services.ports]]
 port = 25565 # externally published port
 [[services.tcp_checks]]
-grace_period = '1s' # start as fast as possible
-interval = '5s'     # check every 5s if the server is up
-timeout = '1s'      # only ever wait 1s for a response
+grace_period = '10s' # start as fast as possible
+interval = '5s'      # check every 5s if the server is up
+timeout = '1s'       # only ever wait 1s for a response
