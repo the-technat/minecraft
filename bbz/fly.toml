@@ -65,7 +65,7 @@ port = 25565
 type = 'tcp'
 interval = '15s'
 timeout = '1s'
-grace_period = '1s'
+grace_period = '10s'
 
 [[vm]]
 memory = '4gb'
