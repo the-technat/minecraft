@@ -10,11 +10,11 @@ All deployed to a fly.io organization, each folder a server.
 
 Initial deployment was done according to [this doc](https://fly.io/docs/launch/continuous-deployment-with-github-actions/). The workflow runs against the `fische` env on the `main` branch or any other env, given the server.
 
-Don't forget to specify the right organization!
+An organization token was generated manually and added to the Github repository.
 
-Secrets have been all generated manually and added to this repository.
+Don't forget to specify the right organization using the  `-o Minecraft` flag.
 
-A dedicated IPv6 address was manaually allocated to the app in the UI & there's an AAAA record pointing to it.
+A dedicated IPv6 address was manaually allocated to the app using `fly ips allocate-v6` and there's an AAAA record pointing to that IP. This means the servers are IPv6 only which means we are not paying for a dedicated IPv4 address. This works as plain TCP traffic is supported by fly.io on IPv6.
 
 ### Copy existing world data
 
