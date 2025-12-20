@@ -3,6 +3,9 @@ on:
   push:
     branches:
       - main
+    paths:
+      - bbz/**
+      - .github/workflows/fly-bbz.yml
 
 jobs:
   deploy:
