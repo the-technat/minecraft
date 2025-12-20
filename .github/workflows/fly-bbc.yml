@@ -1,0 +1,21 @@
+name: Deploy bbc server
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    env:
+      FLY_API_TOKEN: ${{ secrets.FLY_ORG_API_TOKEN }}
+    runs-on: ubuntu-latest
+    concurrency: bbz
+    environment: bbz
+    steps:
+      - name: Get code
+        uses: actions/checkout@v4
+      - name: Setup flyctl
+        uses: superfly/flyctl-actions/setup-flyctl@v1
+      - name: Deploy server
+        working-directory: bbz
+        run: flyctl deploy --remote-only

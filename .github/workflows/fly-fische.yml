@@ -16,11 +16,6 @@ jobs:
         uses: actions/checkout@v4
       - name: Setup flyctl
         uses: superfly/flyctl-actions/setup-flyctl@v1
-      - name: Set secrets for app
-        run: |
-          # flyctl secrets set FLATNOTES_USERNAME=${{ secrets.FLATNOTES_USERNAME }} --stage
-          # flyctl secrets set FLATNOTES_PASSWORD=${{ secrets.FLATNOTES_PASSWORD }} --stage
-          # flyctl secrets set FLATNOTES_SECRET_KEY=${{ secrets.FLATNOTES_SECRET_KEY }} --stage
-      - name: Deploy Prod app
+      - name: Deploy server
         working-directory: fische
         run: flyctl deploy --remote-only

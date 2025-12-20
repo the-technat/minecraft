@@ -1,0 +1,66 @@
+# fly.toml app configuration file generated for minecraft-bbz on 2025-12-20T09:17:13+01:00
+#
+# See https://fly.io/docs/reference/configuration/ for information about how to use this file.
+#
+
+app = 'minecraft-bbz'
+primary_region = 'fra'
+kill_signal = 'SIGINT'
+kill_timeout = '1m0s'
+
+[build]
+  image = 'itzg/minecraft-server:latest'
+
+[deploy]
+  strategy = 'rolling'
+
+[env]
+  ALLOW_FLIGHT = 'TRUE'
+  AUTOSTOP_PKILL_USE_SUDO = 'TRUE'
+  AUTOSTOP_TIMEOUT_EST = '60'
+  AUTOSTOP_TIMEOUT_INIT = '120'
+  DIFFICULTY = 'normal'
+  ENABLE_AUTOSTOP = 'TRUE'
+  ENABLE_COMMAND_BLOCK = 'TRUE'
+  ENABLE_WHITELIST = 'TRUE'
+  EULA = 'TRUE'
+  EXISTING_OPS_FILE = 'SYNCHRONIZE'
+  MAX_PLAYERS = '5'
+  MEMORY = '3000M'
+  MODE = 'survival'
+  MOTD = 'Mir isch längwilig'
+  OPS = 'technat,duffy_26'
+  OVERRIDE_WHITELIST = 'TRUE'
+  SERVER_NAME = 'bbz'
+  SIMULATION_DISTANCE = '10'
+  STOP_SERVER_ANNOUNCE_DELAY = '30s'
+  SYNC_CHUNK_WRITES = 'FALSE'
+  TYPE = 'VANILLA'
+  USE_AIKAR_FLAGS = 'TRUE'
+  VERSION = '1.21'
+  VIEW_DISTANCE = '10'
+  WHITELIST = 'technat,duffy_26'
+
+[[mounts]]
+  source = 'mc_server'
+  destination = '/data'
+  initial_size = '1gb'
+  snapshot_retention = 7
+  auto_extend_size_threshold = 90
+  auto_extend_size_increment = '1GB'
+  auto_extend_size_limit = '5GB'
+
+[[services]]
+  protocol = 'tcp'
+  internal_port = 25565
+  auto_stop_machines = 'off'
+  auto_start_machines = true
+  min_machines_running = 0
+
+  [[services.ports]]
+    port = 25565
+
+[[vm]]
+  memory = '4gb'
+  cpus = 4
+  memory_mb = 4096
