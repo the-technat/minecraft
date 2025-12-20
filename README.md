@@ -4,21 +4,17 @@ A repo containing all things Minecraft.
 
 I'm not a gamer, but as a system engineer I help my friends by setting up their servers so that they don't have to.
 
-## Minecraft Servers
-
-All deployed to a fly.io organization, the folders all contain a `fly.toml` to deploy.
-
-Deployment's are done manually at the time, no Github Action.
+All deployed to a fly.io organization, each folder a server.
 
 ## Initial deployment
 
-Initial deployment was done according to [this doc](https://fly.io/docs/launch/continuous-deployment-with-github-actions/). The workflow runs against the `fische` env on the `main` branch.
+Initial deployment was done according to [this doc](https://fly.io/docs/launch/continuous-deployment-with-github-actions/). The workflow runs against the `fische` env on the `main` branch or any other env, given the server.
 
 Don't forget to specify the right organization!
 
 Secrets have been all generated manually and added to this repository.
 
-A CNAME record points my friends to the domain fly.io allocates for you which in turn resolves to the dedicated IPv4 and shared IPv4. 
+A dedicated IPv6 address was manaually allocated to the app in the UI & there's an AAAA record pointing to it.
 
 ### Copy existing world data
 
