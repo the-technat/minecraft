@@ -1,82 +1,37 @@
 # Minecraft Servers
 
-Minecraft Server hosting for my friends.
+A repo containing all things Minecraft.
 
-> I'm not a gamer, but as a system engineer I help my friends by setting up their servers so that they don't have to.
+I'm not a gamer, but as a system engineer I help my friends by setting up their servers so that they don't have to.
 
-## Goal
+## Minecraft Servers
 
-Setup as many minecraft servers as I want with as few effort as possible and as low cost as possible. If there's effort then in the begining, but there shouldn't be any maintenance effort.
+All deployed to a fly.io organization, the folders all contain a `fly.toml` to deploy.
 
-The server used for this must be cattle, in case it dies we just got downtime till a new server is setup.
+Deployment's are done manually at the time, no Github Action.
 
-## Setup
+## Initial deployment
 
-We need some sort of server, either an old PC sitting under your desk, a VPS or something else.
+Initial deployment was done according to [this doc](https://fly.io/docs/launch/continuous-deployment-with-github-actions/). The workflow runs against the `fische` env on the `main` branch.
 
-On this box I ensure:
-- docker is installed
-- this repo is cloned at `~/minecraft`
-- the following directories are populated with the current world data:
-  - `~/minecraft/fische_data`
-  - `~/minecraft/flasche_data`
-  - see the "Restore" chapter how to get that data back to the server from the latest backup
-- start the stack using `docker compose up -d`
-- expose the container `mc_router`'s `25565/udp` is exposed to the world, and the following domains are pointing to it:
-  - `flasche.alleaffengaffen.ch 300 IN A IP`
-  - `fische.alleaffengaffen.ch 300 IN A IP`
-  - `_minecraft._tcp.flasche.alleaffengaffen.ch IN SRV 10 100 PORT FQDN.`
-  _ `_minecraft._tcp.fische.alleaffengaffen.ch IN SRV 10 100 PORT FQDN.`
+Secrets have been all generated manually and added to this repository.
 
-### playit.gg
+A CNAME record points my friends to the domain fly.io allocates for you which in turn resolves to the dedicated IPv4 and shared IPv4. 
 
-One way to expose `mc_router` to the internet without paying for a public IP.
+### Copy existing world data
 
-Setup:
-- Register at `playit.gg/login/create`
-- Run the following commands on your server:
-  ```console
-  curl -SsL https://playit-cloud.github.io/ppa/key.gpg | gpg --dearmor | sudo tee /etc/apt/trusted.gpg.d/playit.gpg >/dev/null
-  echo "deb [signed-by=/etc/apt/trusted.gpg.d/playit.gpg] https://playit-cloud.github.io/ppa/data ./" | sudo tee /etc/apt/sources.list.d/playit-cloud.list
-  sudo apt update
-  sudo apt install playit
-  sudo systemctl enable --now playit
-  ```
-- Configure the agent by running `playit setup` (this will prompt you to enter a code in your browser and will then configure the playit agent) 
-- Create a tunnel in their UI using "Global Anycast" and type "Minecraft Java (game)".
-- Use the IP and Port they give you to configure DNS
+If you have an existing world, get it on your local computer first. Open a terminal in the directory you have the zip file.
 
-### Backups
+Then connect using SFTP to the machine in your app: `fly sftp shell -a minecraft-flasche`.
 
-There are preconfigured backup containers doing regular backups to S3. To finish their setup, create a `.env` file with the credentials needed:
+Run a  `cd /data` and `put my-fancy-world.zip` to upload the zip file to the data directory on the machine.
 
-```console
-cat <<EOF | tee ./.env
-RESTIC_ADDITIONAL_TAGS=banana
-RESTIC_PASSWORD=<restic password>
-AWS_ACCESS_KEY_ID=<your token access key id>
-AWS_SECRET_ACCESS_KEY=<your token access key secret>
-EOF
-```
+Then run `fly ssh console -a minecraft-flasche` to get a shell in your machine.
 
-Also set the `RCON_PASSWORD` variable and `RESTIC_REPOSITORY` to something different per server:
+Unzip the zip file in the `/data` diretory. Finally rename the folder to `world` and thus override the existing world.
 
-```console
-cat <<EOF | tee .fische-env 
-RCON_PASSWORD=""
-RESTIC_REPOSITORY=s3:https://<cloudflare_account_id>.r2.cloudflarestorage.com/<r2_bucket_name>/fische
-EOF
-cat <<EOF | tee .flasche-env 
-RCON_PASSWORD=""
-RESTIC_REPOSITORY=s3:https://<cloudflare_account_id>.r2.cloudflarestorage.com/<r2_bucket_name>/flasche
-EOF
-``` 
+Now do a `fly machine restart -a minecraft-flasche` and once the server has restared the world should be loaded.
 
-### Restore
+## Credits
 
-Use the following oneshot container to restore the latest world data on a fresh/existing server:
-```console
-docker run --rm -ti -v ./restore_location:/restore --env-file .env -e RESTIC_REPOSITORY="s3:https://<cloudflare_account_id>.r2.cloudflarestorage.com/<r2_bucket_name>" restic/restic restore latest --target /restore
-```
-
-Please note: you might have to check the .env file and see if all env vars are in the correct form for restic to read. Sometimes you need to set them all explicitly with `-e` for restic inside the container to find them.
+[@yamatt](https://github.com/yamatt) for his [fly-minecraft-server](https://github.com/yamatt/fly-minecraft-server) project which served as inspiration how to deploy the servers

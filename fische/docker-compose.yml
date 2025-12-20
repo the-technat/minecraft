@@ -21,25 +21,9 @@ services:
       mc-router.default: true
     container_name: fische
     environment:
-      EULA: "TRUE"
-      VERSION: "1.21"
       ALLOW_FLIGHT: "TRUE"
-      DIFFICULTY: "normal"
       ENABLE_WHITELIST: "TRUE"
-      MAX_PLAYERS: "2"
       MEMORY: "8G"
-      MODE: "survival"
-      MOTD: "Fischers Fritz fischt frische Fische"
-      OVERRIDE_WHITELIST: "true"
-      SERVER_NAME: "fische"
-      SIMULATION_DISTANCE: "10"
-      SYNC_CHUNK_WRITES: "FALSE"
-      USE_AIKAR_FLAGS: "TRUE"
-      VIEW_DISTANCE: "10"
-      WHITELIST: "technat,grosseklappe2,duffy_26"
-      OPS: "technat,duffy_26"
-      EXISTING_OPS_FILE: "SYNCHRONIZE"
-      ENABLE_COMMAND_BLOCK: "TRUE"
     env_file:
       - .fische-env
     volumes:
