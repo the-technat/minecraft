@@ -9,58 +9,65 @@ kill_signal = 'SIGINT'
 kill_timeout = '1m0s'
 
 [build]
-  image = 'itzg/minecraft-server:latest'
+image = 'itzg/minecraft-server:latest'
 
 [deploy]
-  strategy = 'rolling'
+strategy = 'rolling'
 
 [env]
-  ALLOW_FLIGHT = 'TRUE'
-  AUTOSTOP_PKILL_USE_SUDO = 'TRUE'
-  AUTOSTOP_TIMEOUT_EST = '60'
-  AUTOSTOP_TIMEOUT_INIT = '120'
-  DIFFICULTY = 'normal'
-  ENABLE_AUTOSTOP = 'TRUE'
-  ENABLE_COMMAND_BLOCK = 'TRUE'
-  ENABLE_WHITELIST = 'TRUE'
-  EULA = 'TRUE'
-  EXISTING_OPS_FILE = 'SYNCHRONIZE'
-  MAX_PLAYERS = '5'
-  MEMORY = '3000M'
-  MODE = 'survival'
-  MOTD = 'Mir isch längwilig'
-  OPS = 'technat,duffy_26'
-  OVERRIDE_WHITELIST = 'TRUE'
-  SERVER_NAME = 'bbz'
-  SIMULATION_DISTANCE = '10'
-  STOP_SERVER_ANNOUNCE_DELAY = '30s'
-  SYNC_CHUNK_WRITES = 'FALSE'
-  TYPE = 'VANILLA'
-  USE_AIKAR_FLAGS = 'TRUE'
-  VERSION = '1.21'
-  VIEW_DISTANCE = '10'
-  WHITELIST = 'technat,duffy_26'
+ALLOW_FLIGHT = 'TRUE'
+AUTOSTOP_PKILL_USE_SUDO = 'TRUE'
+AUTOSTOP_TIMEOUT_EST = '60'
+AUTOSTOP_TIMEOUT_INIT = '120'
+DIFFICULTY = 'normal'
+ENABLE_AUTOSTOP = 'TRUE'
+ENABLE_COMMAND_BLOCK = 'TRUE'
+ENABLE_WHITELIST = 'TRUE'
+EULA = 'TRUE'
+EXISTING_OPS_FILE = 'SYNCHRONIZE'
+MAX_PLAYERS = '5'
+MEMORY = '3000M'
+MODE = 'survival'
+MOTD = 'Mir isch längwilig'
+OPS = 'technat,duffy_26'
+OVERRIDE_WHITELIST = 'TRUE'
+SERVER_NAME = 'bbz'
+SIMULATION_DISTANCE = '10'
+SYNC_CHUNK_WRITES = 'FALSE'
+TYPE = 'VANILLA'
+USE_AIKAR_FLAGS = 'TRUE'
+VERSION = '1.21'
+VIEW_DISTANCE = '10'
+WHITELIST = 'technat,duffy_26'
 
 [[mounts]]
-  source = 'mc_server'
-  destination = '/data'
-  initial_size = '1gb'
-  snapshot_retention = 7
-  auto_extend_size_threshold = 90
-  auto_extend_size_increment = '1GB'
-  auto_extend_size_limit = '5GB'
+source = 'mc_server'
+destination = '/data'
+initial_size = '1gb'
+snapshot_retention = 7
+auto_extend_size_threshold = 90
+auto_extend_size_increment = '1GB'
+auto_extend_size_limit = '5GB'
 
 [[services]]
-  protocol = 'tcp'
-  internal_port = 25565
-  auto_stop_machines = 'off'
-  auto_start_machines = true
-  min_machines_running = 0
+protocol = 'tcp'
+internal_port = 25565
+auto_stop_machines = 'off'
+auto_start_machines = true
+min_machines_running = 0
 
-  [[services.ports]]
-    port = 25565
+[[services.ports]]
+port = 25565
+
+[checks]
+[checks.ready]
+port = 25565
+type = 'tcp'
+interval = '15s'
+timeout = '1s'
+grace_period = '1s'
 
 [[vm]]
-  memory = '4gb'
-  cpus = 4
-  memory_mb = 4096
+memory = '4gb'
+cpus = 4
+memory_mb = 4096

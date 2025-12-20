@@ -26,14 +26,13 @@ ENABLE_WHITELIST = 'TRUE'
 EULA = 'TRUE'
 EXISTING_OPS_FILE = 'SYNCHRONIZE'
 MAX_PLAYERS = '2'
-MEMORY = '2300M'
+MEMORY = '3000M'
 MODE = 'survival'
 MOTD = 'Fischers Fritz fischt frische Fische'
 OPS = 'technat,duffy_26,grosseklappe2'
 OVERRIDE_WHITELIST = 'TRUE'
 SERVER_NAME = 'fische'
 SIMULATION_DISTANCE = '10'
-STOP_SERVER_ANNOUNCE_DELAY = '30s'
 SYNC_CHUNK_WRITES = 'FALSE'
 TYPE = 'VANILLA'
 USE_AIKAR_FLAGS = 'TRUE'
@@ -59,6 +58,15 @@ min_machines_running = 0
 
 [[services.ports]]
 port = 25565
+
+[checks]
+[checks.ready]
+port = 25565
+type = 'tcp'
+interval = '15s'
+timeout = '1s'
+grace_period = '1s'
+
 
 [[vm]]
 memory = '4gb'
