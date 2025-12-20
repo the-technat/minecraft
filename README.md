@@ -14,6 +14,8 @@ Deployment's are done manually at the time, no Github Action.
 
 Initial deployment was done according to [this doc](https://fly.io/docs/launch/continuous-deployment-with-github-actions/). The workflow runs against the `fische` env on the `main` branch.
 
+Don't forget to specify the right organization!
+
 Secrets have been all generated manually and added to this repository.
 
 A CNAME record points my friends to the domain fly.io allocates for you which in turn resolves to the dedicated IPv4 and shared IPv4. 

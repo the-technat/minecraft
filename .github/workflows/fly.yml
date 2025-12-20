@@ -22,4 +22,5 @@ jobs:
           # flyctl secrets set FLATNOTES_PASSWORD=${{ secrets.FLATNOTES_PASSWORD }} --stage
           # flyctl secrets set FLATNOTES_SECRET_KEY=${{ secrets.FLATNOTES_SECRET_KEY }} --stage
       - name: Deploy Prod app
+        working-directory: fische
         run: flyctl deploy --remote-only
