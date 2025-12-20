@@ -21,7 +21,7 @@ ENABLE_WHITELIST = 'TRUE'
 EULA = 'TRUE'
 EXISTING_OPS_FILE = 'SYNCHRONIZE'
 MAX_PLAYERS = '5'
-MEMORY = '3500M'
+MEMORY = '3200M'
 MODE = 'survival'
 MOTD = 'Mir isch längwilig'
 OPS = 'technat,duffy_26'
@@ -69,7 +69,7 @@ auto_start_machines = true # start again when connection attemps are made
 min_machines_running = 0   # scale to zero
 [[services.ports]]
 port = 25565 # externally published port
-[[services.tcp_checks]]
-grace_period = '30s' # start as fast as possible
-interval = '5s'      # check every 5s if the server is up
-timeout = '1s'       # only ever wait 1s for a response
+# [[services.tcp_checks]]
+# grace_period = '30s' # start as fast as possible
+# interval = '5s'      # check every 5s if the server is up
+# timeout = '1s'       # only ever wait 1s for a response
