@@ -8,17 +8,12 @@ primary_region = 'fra'
 kill_signal = 'SIGINT'
 kill_timeout = '1m0s'
 
-[build]
-image = 'itzg/minecraft-server:latest'
-
-[deploy]
-strategy = 'rolling'
-
 [env]
 ALLOW_FLIGHT = 'TRUE'
 AUTOSTOP_PKILL_USE_SUDO = 'TRUE'
 AUTOSTOP_TIMEOUT_EST = '300'
 AUTOSTOP_TIMEOUT_INIT = '300'
+AUTOPAUSE_TIMEOUT_KN = '30'
 DIFFICULTY = 'normal'
 ENABLE_AUTOSTOP = 'TRUE'
 ENABLE_COMMAND_BLOCK = 'TRUE'
@@ -26,49 +21,55 @@ ENABLE_WHITELIST = 'TRUE'
 EULA = 'TRUE'
 EXISTING_OPS_FILE = 'SYNCHRONIZE'
 MAX_PLAYERS = '2'
-MEMORY = '3000M'
+MEMORY = '3500M'
 MODE = 'survival'
 MOTD = 'Fischers Fritz fischt frische Fische'
 OPS = 'technat,duffy_26,grosseklappe2'
 OVERRIDE_WHITELIST = 'TRUE'
 SERVER_NAME = 'fische'
+SERVER_HOST = '0.0.0.0'
 SIMULATION_DISTANCE = '10'
 SYNC_CHUNK_WRITES = 'FALSE'
+TUNE_VIRTUALIZED = 'TRUE'
 TYPE = 'VANILLA'
-USE_AIKAR_FLAGS = 'TRUE'
+USE_MEOWICE_FLAGS = 'TRUE'
+USE_NATIVE_TRANSPORT = 'TRUE'
+STOP_DURATION = '50'                          # just a bit less than the kill_timeout of the fly machine
 VERSION = '1.21'
 VIEW_DISTANCE = '10'
 WHITELIST = 'technat,grosseklappe2,duffy_26'
 
+[build]
+image = 'itzg/minecraft-server:latest'
+
+[deploy]
+strategy = 'rolling'
+
+[[vm]]
+cpu_kind = "shared"
+cpus = 4
+memory = '4GB'
+persist_rootfs = "always"
+
 [[mounts]]
 source = 'mc_server'
 destination = '/data'
-initial_size = '1gb'
-snapshot_retention = 7
-auto_extend_size_threshold = 90
-auto_extend_size_increment = '1GB'
-auto_extend_size_limit = '5GB'
+initial_size = '1GB'               # min size
+scheduled_snapshots = true         # A snapshot a day
+snapshot_retention = 7             # keep snapshots this long
+auto_extend_size_threshold = 90    # at 90% add 
+auto_extend_size_increment = '1GB' # 1GB
+auto_extend_size_limit = '5GB'     # up to max 5GB
 
 [[services]]
-protocol = 'tcp'
+protocol = "tcp"
 internal_port = 25565
-auto_stop_machines = 'off'
-auto_start_machines = true
-min_machines_running = 0
-
+auto_stop_machines = 'off' # server will shutdown itself when no active players
+auto_start_machines = true # start again when connection attemps are made
+min_machines_running = 0   # scale to zero
 [[services.ports]]
-port = 25565
-
-[checks]
-[checks.ready]
-port = 25565
-type = 'tcp'
-interval = '15s'
-timeout = '1s'
-grace_period = '10s'
-
-
-[[vm]]
-memory = '4gb'
-cpus = 4
-memory_mb = 4096
+port = 25565 # externally published port
+[[services.tcp_checks]]
+grace_period = '1s' # start as fast as possible
+interval = '5s'     # check every 5s if the server is up
+timeout = '1s'      # only ever wait 1s for a response
