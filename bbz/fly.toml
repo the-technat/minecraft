@@ -9,7 +9,7 @@ kill_signal = 'SIGINT'
 kill_timeout = '1m0s'
 
 [env]
-ALLOW_FLIGHT = 'TRUE'
+ALLOW_FLIGHT = 'FALSE'
 AUTOSTOP_PKILL_USE_SUDO = 'TRUE'
 AUTOSTOP_TIMEOUT_EST = '300'
 AUTOSTOP_TIMEOUT_INIT = '300'
@@ -20,10 +20,10 @@ ENABLE_COMMAND_BLOCK = 'TRUE'
 ENABLE_WHITELIST = 'TRUE'
 EULA = 'TRUE'
 EXISTING_OPS_FILE = 'SYNCHRONIZE'
-MAX_PLAYERS = '5'
-MEMORY = '3200M'
+MAX_PLAYERS = '8'
+MEMORY = '7000M'
 MODE = 'survival'
-MOTD = 'Mir isch längwilig'
+MOTD = '\u00a7fDu bisch e suchti, dir isch l\u00e4ngwilig und du s\u00f6tsch eigentlech \u00f6bbis Produktivs mache?'
 OPS = 'technat,duffy_26'
 OVERRIDE_WHITELIST = 'TRUE'
 SERVER_NAME = 'bbz'
@@ -37,7 +37,7 @@ USE_NATIVE_TRANSPORT = 'TRUE'
 STOP_DURATION = '50'              # just a bit less than the kill_timeout of the fly machine
 VERSION = '1.21.11'
 VIEW_DISTANCE = '10'
-WHITELIST = 'technat,duffy_26'
+WHITELIST = 'technat,duffy_26,tobidrglobi,Blackminty,grosseklappe2,TIBO9433,TIBO_15,DoppuG'
 
 [build]
 image = 'itzg/minecraft-server:latest'
@@ -48,7 +48,7 @@ strategy = 'rolling'
 [[vm]]
 cpu_kind = "shared"
 cpus = 4
-memory = '4GB'
+memory = '8GB'
 persist_rootfs = "always"
 
 [[mounts]]
