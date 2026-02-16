@@ -45,7 +45,7 @@ VIEW_DISTANCE = '10'
 WHITELIST = 'technat,duffy_26,tobidrglobi,Blackminty,grosseklappe2,TIBO_15,DoppuG'
 
 [build]
-image = 'itzg/minecraft-server:java17-1.21.11'
+image = 'itzg/minecraft-server:latest'
 
 [deploy]
 strategy = 'rolling'
