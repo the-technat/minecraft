@@ -65,7 +65,7 @@ auto_extend_size_limit = '5GB'     # up to max 5GB
 protocol = "tcp"
 internal_port = 25565
 auto_stop_machines = 'off' # server will shutdown itself when no active players
-auto_start_machines = true # start again when connection attemps are made
+auto_start_machines = false # start again when connection attemps are made
 min_machines_running = 0   # scale to zero
 [[services.ports]]
 port = 25565 # externally published port
